@@ -44,7 +44,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
             String msg = await AuthHelper.helper.signInEmail(txtEmail.text, txtPassWord.text);
             if(msg == "Success"){
-              Get.offAndToNamed('home');
+              AuthHelper.helper.checkUser();
+              Get.offAndToNamed('');
               Get.snackbar("Successful ", "chatApp");
             }else{
               Get.snackbar( msg, "chatApp");

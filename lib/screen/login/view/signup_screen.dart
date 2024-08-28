@@ -46,10 +46,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
             String msg = await AuthHelper.helper.signUpEmail(txtEmail.text, txtPassWord.text);
             if(msg == "Success"){
-              Get.offAndToNamed('home');
+              //AuthHelper.helper.checkUser();
               Get.snackbar("Successful ", "chatApp");
             }else{
               Get.snackbar( msg, "chatApp");
+              Get.offAllNamed('signin');
             }
 
           }, child: const Text("SignUp")),

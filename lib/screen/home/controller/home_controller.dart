@@ -3,5 +3,4 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController{
 
-  Rx<TimeOfDay> time = TimeOfDay.now().obs;
 }

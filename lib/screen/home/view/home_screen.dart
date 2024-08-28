@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled5/screen/home/controller/home_controller.dart';
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       height: 100,
                       width: MediaQuery.sizeOf(context).width,
-                        child:  ListTile(
+                        child:  const ListTile(
                           title: Text("Mansi"),
                           leading: CircleAvatar(),
                           trailing: Text("11:00"),
@@ -52,15 +51,23 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: Column(
           children: [
+            SizedBox(height: 40,),
+            ListTile(
+              onTap: () async {
+                Get.toNamed('profile');
+              },
+              title: const Text("Profile"),
+              leading: const Icon(Icons.person),
+            ),
             const Spacer(),
             ListTile(
               onTap: () async {
                 await AuthHelper.helper.signOut();
                 Get.offAllNamed('signin');
               },
-              title: Text("LogOut"),
-              leading: Icon(Icons.logout),
-            )
+              title: const Text("LogOut"),
+              leading: const Icon(Icons.logout),
+            ),
           ],
         ),
       ),
