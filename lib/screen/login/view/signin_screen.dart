@@ -45,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
             String msg = await AuthHelper.helper.signInEmail(txtEmail.text, txtPassWord.text);
             if(msg == "Success"){
               AuthHelper.helper.checkUser();
-              Get.offAndToNamed('');
+              Get.offAndToNamed('profile');
               Get.snackbar("Successful ", "chatApp");
             }else{
               Get.snackbar( msg, "chatApp");
@@ -56,7 +56,7 @@ class _SignInScreenState extends State<SignInScreen> {
             onTap: () async {
               String msg = await AuthHelper.helper.signWithGoogle();
               if(msg == "Success"){
-                Get.offAndToNamed('home');
+                Get.offAndToNamed('profile');
                 Get.snackbar("Successful ", "chatApp");
               }else{
                 Get.snackbar( msg, "chatApp");
@@ -69,9 +69,6 @@ class _SignInScreenState extends State<SignInScreen> {
           TextButton(onPressed: () {
             Get.toNamed('signup');
           }, child: const Text("Create new Account? Sign Up")),
-          ElevatedButton(onPressed: () {
-            Get.toNamed('home');
-          }, child: Text("Next")),
         ],
       ),
     );

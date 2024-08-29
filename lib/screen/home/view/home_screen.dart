@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: Column(
           children: [
-            SizedBox(height: 40,),
+            const SizedBox(height: 40,),
             ListTile(
               onTap: () async {
                 Get.toNamed('profile');
@@ -71,6 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Get.toNamed('user');
+      },child: Icon(Icons.person),),
     );
   }
 }

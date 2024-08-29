@@ -11,8 +11,13 @@ class FireDbHelper{
 
   Future<void> setData(ProfileModel profileModel) async {
 
-    await fireStore.collection("User").doc(AuthHelper.helper.user!.uid).set({"name": profileModel.name,
-      "mobile":profileModel.mobile,"email":profileModel.email,"bio":profileModel.bio});
+    await fireStore.collection("User").doc(AuthHelper.helper.user!.uid).set({
+      "name": profileModel.name,
+      "mobile":profileModel.mobile,
+      "email":profileModel.email,
+      "bio":profileModel.bio,
+      "uid":AuthHelper.helper.user!.uid
+    });
   }
 
   Future<ProfileModel?> signInProfile() async {
@@ -29,6 +34,22 @@ class FireDbHelper{
      else{
        return null;
      }
+  }
+
+  Future<List<ProfileModel>> getAllUser() async {
+    List<ProfileModel> profileList =[];
+     QuerySnapshot snapshot =await fireStore.collection("User").where("uid",isNotEqualTo: AuthHelper.helper.user!.uid).get();
+     List<QueryDocumentSnapshot> docList =snapshot.docs;
+
+
+     for(var x in docList){
+       Map m1 = x.data() as Map;
+       String docId = x.id;
+       ProfileModel model = ProfileModel.mapToModel(m1);
+       model.uid= docId;
+       profileList.add(model);
+     }
+     return profileList;
   }
 
 }
