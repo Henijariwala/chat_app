@@ -13,14 +13,14 @@ class _UserScreenState extends State<UserScreen> {
   UserController controller = Get.put(UserController());
   @override
   void initState() {
-    controller.getUser;
+    controller.getUser();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("User"),
+        title: const Text("User"),
       ),
       body: Obx(
        () =>  ListView.builder(

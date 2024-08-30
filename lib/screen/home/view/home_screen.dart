@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
         Get.toNamed('user');
-      },child: Icon(Icons.person),),
+      },child: const Icon(Icons.person),),
     );
   }
 }
