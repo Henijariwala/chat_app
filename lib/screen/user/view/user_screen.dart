@@ -26,12 +26,17 @@ class _UserScreenState extends State<UserScreen> {
        () =>  ListView.builder(
           itemCount: controller.profileList.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text("${controller.profileList[index].name}"),
-              leading: CircleAvatar(
-                child: Text(controller.profileList[index].name![0]),
+            return InkWell(
+              onTap: () {
+                Get.toNamed('chat',arguments: controller.profileList[index]);
+              },
+              child: ListTile(
+                title: Text("${controller.profileList[index].name}"),
+                leading: CircleAvatar(
+                  child: Text(controller.profileList[index].name![0]),
+                ),
+                subtitle: Text("${controller.profileList[index].mobile}"),
               ),
-              subtitle: Text("${controller.profileList[index].mobile}"),
             );
           },),
       ),
