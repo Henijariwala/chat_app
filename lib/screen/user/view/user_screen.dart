@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled5/screen/user/controller/user_controller.dart';
+import 'package:untitled5/utils/auth_helper.dart';
+import 'package:untitled5/utils/firedb_helper.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
@@ -28,6 +30,9 @@ class _UserScreenState extends State<UserScreen> {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
+                FireDbHelper.helper.getChatDoc(
+                    AuthHelper.helper.user!.uid,
+                    controller.profileList[index].uid!);
                 Get.toNamed('chat',arguments: controller.profileList[index]);
               },
               child: ListTile(

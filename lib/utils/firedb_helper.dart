@@ -10,6 +10,7 @@ class FireDbHelper {
   FireDbHelper._();
 
   FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  String? docId;
 
   Future<void> setData(ProfileModel profileModel) async {
     await fireStore.collection("User").doc(AuthHelper.helper.user!.uid).set({
@@ -106,19 +107,41 @@ class FireDbHelper {
     }
   }
 
-  void readChat(String senderId,String receiverId)async{
-    List<ChatModel> dataList =[];
-    String? uId = await checkChatConversation(senderId, receiverId);
+  Future<void> getChatDoc(String senderId , String receiverId) async {
+    docId =await checkChatConversation(senderId, receiverId);
+  }
+  Stream<QuerySnapshot<Map>> readChat() {
+    // List<ChatModel> dataList =[];
+    // String? uId = await checkChatConversation(senderId, receiverId);
 
-    if(uId != null){
-      QuerySnapshot sp = await fireStore.collection("Chat").doc(uId).collection("msg").get();
-      List<DocumentSnapshot> chatList= sp.docs;
+    //   if(uId != null){
+    //     QuerySnapshot sp = await fireStore.collection("Chat").doc(uId).collection("msg").get();
+    //     List<DocumentSnapshot> chatList= sp.docs;
+    //
+    //     for(var x in chatList){
+    //       Map m1 = x.data() as Map;
+    //       ChatModel model = ChatModel.mapToModel(m1);
+    //       dataList.add(model);
+    //     }
+    //   }
+    // }
 
-      for(var x in chatList){
-        Map m1 = x.data() as Map;
-        ChatModel model = ChatModel.mapToModel(m1);
-        dataList.add(model);
-      }
-    }
+    Stream<QuerySnapshot<Map>> sp = fireStore.
+    collection("Chat").
+    doc(docId).
+    collection("msg").
+    orderBy("date", descending: false).
+    snapshots();
+
+    return sp;
+  }
+
+  Future<void> deleteChat(String msgId) async {
+    await fireStore.
+    collection("Chat").
+    doc(docId).
+    collection("msg").
+    doc(msgId).
+    delete();
   }
 }
