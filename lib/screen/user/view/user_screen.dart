@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled5/screen/user/controller/user_controller.dart';
-import 'package:untitled5/utils/auth_helper.dart';
-import 'package:untitled5/utils/firedb_helper.dart';
+import 'package:untitled5/utils/app_color.dart';
+import 'package:untitled5/utils/helper/auth_helper.dart';
+import 'package:untitled5/utils/helper/firedb_helper.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
@@ -22,6 +23,8 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: purple,
+        foregroundColor: Colors.white,
         title: const Text("User"),
       ),
       body: Obx(
@@ -35,12 +38,15 @@ class _UserScreenState extends State<UserScreen> {
                     controller.profileList[index].uid!);
                 Get.toNamed('chat',arguments: controller.profileList[index]);
               },
-              child: ListTile(
-                title: Text("${controller.profileList[index].name}"),
-                leading: CircleAvatar(
-                  child: Text(controller.profileList[index].name![0]),
+              child: Card(
+                shadowColor: purple,
+                child: ListTile(
+                  title: Text("${controller.profileList[index].name}"),
+                  leading: CircleAvatar(
+                    child: Text(controller.profileList[index].name![0]),
+                  ),
+                  subtitle: Text("${controller.profileList[index].mobile}"),
                 ),
-                subtitle: Text("${controller.profileList[index].mobile}"),
               ),
             );
           },),

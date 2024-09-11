@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:untitled5/screen/chat/controller/chat_controller.dart';
 import 'package:untitled5/screen/chat/model/chat_model.dart';
 import 'package:untitled5/screen/profile/model/profileModel.dart';
-import 'package:untitled5/utils/auth_helper.dart';
-import 'package:untitled5/utils/firedb_helper.dart';
+import 'package:untitled5/utils/app_color.dart';
+import 'package:untitled5/utils/helper/auth_helper.dart';
+import 'package:untitled5/utils/helper/firedb_helper.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -28,7 +28,9 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("${model.name}"),
+        backgroundColor: purple,
+        foregroundColor: Colors.white,
+        title: Text("${model.name}",style: const TextStyle(fontSize: 25),),
         leading: Container(
           height: 100,
           width: 100,
@@ -37,6 +39,10 @@ class _ChatScreenState extends State<ChatScreen> {
             child: Text(model.name![0]),
           ),
         ),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.videocam_outlined,size: 30,)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.phone)),
+        ],
       ),
       body: Column(
         children: [
@@ -62,7 +68,6 @@ class _ChatScreenState extends State<ChatScreen> {
                       return Container(
                         height: 50,
                         margin: const EdgeInsets.all(5),
-                        width: 200,
                         alignment: chatList[index].senderId != AuthHelper.helper.user!.uid
                             ?Alignment.centerLeft
                             : Alignment.centerRight,
@@ -88,42 +93,60 @@ class _ChatScreenState extends State<ChatScreen> {
                             width: MediaQuery.sizeOf(context).width*0.50,
                             alignment: Alignment.centerLeft,
                             decoration: BoxDecoration(
-                                color: Colors.cyan.shade100,
+                                color: chatList[index].senderId != AuthHelper.helper.user!.uid
+                                    ? const Color(0xffb695e7)
+                                    : const Color(0xffdecff4),
                                 borderRadius: BorderRadius.circular(10)
                             ),
-                            child: Text("${chatList[index].msg}"),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("${chatList[index].msg}",style: const TextStyle(fontSize: 20),),
+                            ),
                           ),
                         ),
                       );
                     },),
                 );
               }
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
            }
           ),
           Card(
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: txtChat,
-                    decoration: const InputDecoration(
-                      hintText: "Write message",
+            surfaceTintColor: purple,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: txtChat,
+                      decoration: const InputDecoration(
+                        hintText: "Write message",
+                        focusColor: purple,
+                      ),
+                      cursorColor: purple,
                     ),
                   ),
-                ),
-                IconButton(onPressed: () {
-                  ChatModel chatModel = ChatModel(
-                    dateTime: Timestamp.now(),
-                    msg: txtChat.text,
-                    senderId: AuthHelper.helper.user!.uid
-                  );
-                  FireDbHelper.helper.sendMessage(
-                      AuthHelper.helper.user!.uid,
-                      "${model.uid}",
-                      chatModel);
-                }, icon: const Icon(Icons.send),color: Colors.blue,)
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IconButton(onPressed: () {
+                      ChatModel chatModel = ChatModel(
+                        dateTime: Timestamp.now(),
+                        msg: txtChat.text,
+                        senderId: AuthHelper.helper.user!.uid
+                      );
+                      FireDbHelper.helper.sendMessage(
+                          AuthHelper.helper.user!.uid,
+                          "${model.uid}",
+                          chatModel);
+                    }, icon: const Icon(Icons.send),style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(purple),
+                      foregroundColor: WidgetStatePropertyAll(Colors.white)
+                    ),),
+                  )
+                ],
+              ),
             ),
           )
         ],

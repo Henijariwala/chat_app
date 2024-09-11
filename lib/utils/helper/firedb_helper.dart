@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:untitled5/screen/profile/model/profileModel.dart';
-import 'package:untitled5/utils/auth_helper.dart';
+import 'package:untitled5/utils/helper/auth_helper.dart';
 
-import '../screen/chat/model/chat_model.dart';
+import '../../screen/chat/model/chat_model.dart';
 
 class FireDbHelper {
   static FireDbHelper helper = FireDbHelper._();
@@ -143,5 +143,19 @@ class FireDbHelper {
     collection("msg").
     doc(msgId).
     delete();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getMyChatUser() {
+    return fireStore
+        .collection("Chat")
+        .where("uids", arrayContains: AuthHelper.helper.user!.uid)
+        .snapshots();
+  }
+
+  Future<ProfileModel> getUIDUsers(receiverUID) async {
+    DocumentSnapshot snapshot = await fireStore.collection("User").doc(receiverUID).get();
+    Map m1 = snapshot.data() as Map;
+    ProfileModel profileModel =ProfileModel.mapToModel(m1);
+    return profileModel;
   }
 }

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../utils/firedb_helper.dart';
+import '../../../utils/helper/firedb_helper.dart';
 import '../../profile/model/profileModel.dart';
 
 class UserController extends GetxController{
