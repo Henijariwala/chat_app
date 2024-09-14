@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           StreamBuilder(stream: controller.chatUsers,
             builder: (context, snapshot) {
             if(snapshot.hasError){
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Get.toNamed('chat',arguments: controller.userList[index]);
                           },
                           leading: CircleAvatar(
-                            child: Text("${controller.userList[index].name![0]}"),
+                            child: Text(controller.userList[index].name![0]),
                           ),
                           title:  Text("${controller.userList[index].name}"),
                           subtitle: Text("${controller.userList[index].mobile}"),
@@ -134,17 +134,93 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: Column(
           children: [
-            const SizedBox(height: 40,),
+            const SizedBox(height: 60,),
+             Card(
+              shadowColor: purple,
+              child: ListTile(
+                onTap: () {
+                  Get.toNamed('account');
+                },
+                title: const Text("Manage Account"),
+                leading: const Icon(Icons.key,),
+              ),
+            ),
+            const SizedBox(height: 10,),
+            const Card(
+              shadowColor: purple,
+              child: ListTile(
+                title: Text("Privacy"),
+                leading: Icon(Icons.lock,),
+              ),
+            ),
+            const SizedBox(height: 10,),
+            const Card(
+              shadowColor: purple,
+              child: ListTile(
+                title: Text("Chat"),
+                leading: Icon(Icons.chat,),
+              ),
+            ),
+            const SizedBox(height: 10,),
+            const Card(
+              shadowColor: purple,
+              child: ListTile(
+                title: Text("Language"),
+                leading: Icon(Icons.language,),
+              ),
+            ),
+            const SizedBox(height: 10,),
+            const Card(
+              shadowColor: purple,
+              child: ListTile(
+                title: Text("Help"),
+                leading: Icon(Icons.help,),
+              ),
+            ),
+            const SizedBox(height: 10,),
+            const Card(
+              shadowColor: purple,
+              child: ListTile(
+                title: Text("Notification"),
+                leading: Icon(Icons.notifications_active,),
+              ),
+            ),
+            const SizedBox(height: 10,),
+            const Card(
+              shadowColor: purple,
+              child: ListTile(
+                title: Text("Storage and Data"),
+                leading: Icon(Icons.change_circle_outlined,),
+              ),
+            ),
+            const SizedBox(height: 10,),
+            const Card(
+              shadowColor: purple,
+              child: ListTile(
+                title: Text("Invite a friend"),
+                leading: Icon(Icons.mobile_friendly_rounded,),
+              ),
+            ),
+            const SizedBox(height: 10,),
+            const Card(
+              shadowColor: purple,
+              child: ListTile(
+                title: Text("App updates"),
+                leading: Icon(Icons.update,),
+              ),
+            ),
+            const SizedBox(height: 10,),
             Card(
               shadowColor: purple,
               child: ListTile(
-                onTap: () async {
+                onTap: () {
                   Get.toNamed('profile');
                 },
                 title: const Text("Profile"),
                 leading: const Icon(Icons.person,),
               ),
             ),
+            const SizedBox(height: 10,),
             Obx(
               () => Card(
                 shadowColor: purple,
@@ -159,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const Spacer(),
+            const SizedBox(height: 10,),
             Card(
               shadowColor: purple,
               child: ListTile(

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled5/screen/home/controller/home_controller.dart';
 import 'package:untitled5/utils/app_routes.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:untitled5/utils/helper/fcm_helper.dart';
 import 'package:untitled5/utils/service/notification_service.dart';

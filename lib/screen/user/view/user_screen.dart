@@ -32,8 +32,8 @@ class _UserScreenState extends State<UserScreen> {
           itemCount: controller.profileList.length,
           itemBuilder: (context, index) {
             return InkWell(
-              onTap: () {
-                FireDbHelper.helper.getChatDoc(
+              onTap: ()async {
+               await  FireDbHelper.helper.getChatDoc(
                     AuthHelper.helper.user!.uid,
                     controller.profileList[index].uid!);
                 Get.toNamed('chat',arguments: controller.profileList[index]);

@@ -39,7 +39,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         backgroundColor: Color(0xffad87e4),
         foregroundColor: Colors.white,
-        title: const Text("Profile"),
       ),
       body: Column(
         children: [
@@ -49,65 +48,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 clipper: WaveClipperTwo(),
                 child: Container(
                   height: 200,
-                  color: Color(0xffddcef3),
+                  color: const Color(0xffddcef3),
                 ),
               ),
               ClipPath(
                 clipper: WaveClipperTwo(),
                 child: Container(
                   height: 150,
-                  color: Color(0xffad87e4),
+                  color: const Color(0xffad87e4),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: CircleAvatar(
-                  radius: 80,
-                  backgroundColor: Colors.white,
-                  child: Align(
-                    alignment: Alignment(0.8,0.9),
-                    child: IconButton.filled(onPressed: () {},
-                        icon: Icon(Icons.add,color: Colors.white,)),
-                  ),
-                ),
-              )
+              ), 
+              const Align(
+                alignment: Alignment.center,
+                child: Text("Your Profile",style: TextStyle(color: Colors.white,fontSize: 30),))
             ],
           ),
           const SizedBox(height: 20,),
-          TextFormField(
-            controller: txtName,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              label: Text("Name"),
-              prefixIcon: Icon(Icons.person),
-              fillColor: Color(0xff7b3fd3),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              controller: txtName,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Name"),
+                prefixIcon: Icon(Icons.person),
+                fillColor: Color(0xff7b3fd3),
+              ),
             ),
           ),
-          const SizedBox(height: 10,),
-          TextFormField(
-            controller: txtBio,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              label: Text("Bio"),
-              prefixIcon: Icon(Icons.account_box_outlined)
+          const SizedBox(height: 2,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              controller: txtBio,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Bio"),
+                prefixIcon: Icon(Icons.account_box_outlined)
+              ),
             ),
           ),
-          const SizedBox(height: 10,),
-          TextFormField(
-            controller: txtEmail,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              label: Text("Email"),
-              prefixIcon: Icon(Icons.email)
+          const SizedBox(height: 2,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              controller: txtEmail,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Email"),
+                prefixIcon: Icon(Icons.email)
+              ),
             ),
           ),
-          const SizedBox(height: 10,),
-          TextFormField(
-            controller: txtMobile,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              label: Text("Mobile"),
-              prefixIcon: Icon(Icons.phone)
+          const SizedBox(height: 2,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              controller: txtMobile,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Mobile"),
+                prefixIcon: Icon(Icons.phone)
+              ),
             ),
           ),
           const SizedBox(height: 20,),
@@ -122,8 +124,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Get.toNamed('home');
           },
             label: const Text("Submit"),
-            icon: Icon(Icons.save),
-            style: ButtonStyle(
+            icon: const Icon(Icons.save),
+            style: const ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(Color(0xff7b3fd3)),
               foregroundColor: WidgetStatePropertyAll(Colors.white)
             ),
