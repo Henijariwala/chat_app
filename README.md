@@ -1,3 +1,17 @@
+# Chat APP
+
+file name : chat_firebase_miner
+
+A new Flutter project.
+
+## Getting Started
+- Firebase
+- Login
+- Registration
+- Logout
+- profile
+- chat
+
 <img src="https://github.com/user-attachments/assets/f27a574e-2ba2-4aaf-ab2c-16271e32dab9" width=250>
 <img src="https://github.com/user-attachments/assets/837bcc28-f66b-48e7-9ec8-5a7cc2d91665" width=250>
 <img src="https://github.com/user-attachments/assets/ec46daed-4e60-4e47-9b64-c6161daf5880" width=250>
