@@ -98,13 +98,10 @@ class _ChatScreenState extends State<ChatScreen> {
                               width: 200,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  color:  Color(0xff7bb5d5),
+                                  color:  const Color(0xff7bb5d5),
                                   borderRadius: BorderRadius.circular(10)
-                                ),
-                                child: Text("${chatList[index].dateTime!.toDate()}",style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14
-                                ),)),
+                                ), child: Text("${chatList[index].dateTime!.toDate()}",
+                              style: const TextStyle(color: Colors.black, fontSize: 14),)),
                           ):const Text("");
                         },
                         itemCount: chatList.length,
