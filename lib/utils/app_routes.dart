@@ -16,5 +16,4 @@ Map<String,WidgetBuilder>app_routes = {
   'profile':(c1)=> const ProfileScreen(),
   'user':(c1)=> const UserScreen(),
   'chat':(c1)=> const ChatScreen(),
-  'account':(c1)=> const AccountScreen(),
 };

@@ -40,97 +40,99 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Color(0xffad87e4),
         foregroundColor: Colors.white,
       ),
-      body: Column(
-        children: [
-          Stack(
-            children: [
-              ClipPath(
-                clipper: WaveClipperTwo(),
-                child: Container(
-                  height: 200,
-                  color: const Color(0xffddcef3),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                ClipPath(
+                  clipper: WaveClipperTwo(),
+                  child: Container(
+                    height: 200,
+                    color: const Color(0xffddcef3),
+                  ),
+                ),
+                ClipPath(
+                  clipper: WaveClipperTwo(),
+                  child: Container(
+                    height: 150,
+                    color: const Color(0xffad87e4),
+                  ),
+                ), 
+                const Align(
+                  alignment: Alignment.center,
+                  child: Text("Your Profile",style: TextStyle(color: Colors.white,fontSize: 30),))
+              ],
+            ),
+            const SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: txtName,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  label: Text("Name"),
+                  prefixIcon: Icon(Icons.person),
+                  fillColor: Color(0xff7b3fd3),
                 ),
               ),
-              ClipPath(
-                clipper: WaveClipperTwo(),
-                child: Container(
-                  height: 150,
-                  color: const Color(0xffad87e4),
+            ),
+            const SizedBox(height: 2,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: txtBio,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  label: Text("Bio"),
+                  prefixIcon: Icon(Icons.account_box_outlined)
                 ),
-              ), 
-              const Align(
-                alignment: Alignment.center,
-                child: Text("Your Profile",style: TextStyle(color: Colors.white,fontSize: 30),))
-            ],
-          ),
-          const SizedBox(height: 20,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              controller: txtName,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text("Name"),
-                prefixIcon: Icon(Icons.person),
-                fillColor: Color(0xff7b3fd3),
               ),
             ),
-          ),
-          const SizedBox(height: 2,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              controller: txtBio,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text("Bio"),
-                prefixIcon: Icon(Icons.account_box_outlined)
+            const SizedBox(height: 2,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: txtEmail,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  label: Text("Email"),
+                  prefixIcon: Icon(Icons.email)
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 2,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              controller: txtEmail,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text("Email"),
-                prefixIcon: Icon(Icons.email)
+            const SizedBox(height: 2,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: txtMobile,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  label: Text("Mobile"),
+                  prefixIcon: Icon(Icons.phone)
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 2,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              controller: txtMobile,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text("Mobile"),
-                prefixIcon: Icon(Icons.phone)
+            const SizedBox(height: 20,),
+            ElevatedButton.icon(onPressed: () {
+              ProfileModel model = ProfileModel(
+                name: txtName.text,
+                mobile: txtMobile.text,
+                email: txtEmail.text,
+                bio: txtBio.text,
+              );
+              FireDbHelper.helper.setData(model);
+              Get.toNamed('home');
+            },
+              label: const Text("Submit"),
+              icon: const Icon(Icons.save),
+              style: const ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(Color(0xff7b3fd3)),
+                foregroundColor: WidgetStatePropertyAll(Colors.white)
               ),
-            ),
-          ),
-          const SizedBox(height: 20,),
-          ElevatedButton.icon(onPressed: () {
-            ProfileModel model = ProfileModel(
-              name: txtName.text,
-              mobile: txtMobile.text,
-              email: txtEmail.text,
-              bio: txtBio.text,
-            );
-            FireDbHelper.helper.setData(model);
-            Get.toNamed('home');
-          },
-            label: const Text("Submit"),
-            icon: const Icon(Icons.save),
-            style: const ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(Color(0xff7b3fd3)),
-              foregroundColor: WidgetStatePropertyAll(Colors.white)
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -101,7 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 },);
 
               }
-
               return Obx(
                     () => Expanded(
                       child: ListView.builder(
@@ -119,9 +118,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           subtitle: Text("${controller.userList[index].mobile}"),
                         ),
                       );
-                                        },
-                                        itemCount: controller.userList.length,
-                                      ),
+                      },
+                        itemCount: controller.userList.length,
+                      ),
                     ),
               );
             }
@@ -132,122 +131,124 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       drawer: Drawer(
-        child: Column(
-          children: [
-            const SizedBox(height: 60,),
-             Card(
-              shadowColor: purple,
-              child: ListTile(
-                onTap: () {
-                  Get.toNamed('account');
-                },
-                title: const Text("Manage Account"),
-                leading: const Icon(Icons.key,),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 60,),
+               Card(
+                shadowColor: purple,
+                child: ListTile(
+                  onTap: () {
+                    Get.toNamed('account');
+                  },
+                  title: const Text("Manage Account"),
+                  leading: const Icon(Icons.key,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            const Card(
-              shadowColor: purple,
-              child: ListTile(
-                title: Text("Privacy"),
-                leading: Icon(Icons.lock,),
+              const SizedBox(height: 10,),
+              const Card(
+                shadowColor: purple,
+                child: ListTile(
+                  title: Text("Privacy"),
+                  leading: Icon(Icons.lock,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            const Card(
-              shadowColor: purple,
-              child: ListTile(
-                title: Text("Chat"),
-                leading: Icon(Icons.chat,),
+              const SizedBox(height: 10,),
+              const Card(
+                shadowColor: purple,
+                child: ListTile(
+                  title: Text("Chat"),
+                  leading: Icon(Icons.chat,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            const Card(
-              shadowColor: purple,
-              child: ListTile(
-                title: Text("Language"),
-                leading: Icon(Icons.language,),
+              const SizedBox(height: 10,),
+              const Card(
+                shadowColor: purple,
+                child: ListTile(
+                  title: Text("Language"),
+                  leading: Icon(Icons.language,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            const Card(
-              shadowColor: purple,
-              child: ListTile(
-                title: Text("Help"),
-                leading: Icon(Icons.help,),
+              const SizedBox(height: 10,),
+              const Card(
+                shadowColor: purple,
+                child: ListTile(
+                  title: Text("Help"),
+                  leading: Icon(Icons.help,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            const Card(
-              shadowColor: purple,
-              child: ListTile(
-                title: Text("Notification"),
-                leading: Icon(Icons.notifications_active,),
+              const SizedBox(height: 10,),
+              const Card(
+                shadowColor: purple,
+                child: ListTile(
+                  title: Text("Notification"),
+                  leading: Icon(Icons.notifications_active,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            const Card(
-              shadowColor: purple,
-              child: ListTile(
-                title: Text("Storage and Data"),
-                leading: Icon(Icons.change_circle_outlined,),
+              const SizedBox(height: 10,),
+              const Card(
+                shadowColor: purple,
+                child: ListTile(
+                  title: Text("Storage and Data"),
+                  leading: Icon(Icons.change_circle_outlined,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            const Card(
-              shadowColor: purple,
-              child: ListTile(
-                title: Text("Invite a friend"),
-                leading: Icon(Icons.mobile_friendly_rounded,),
+              const SizedBox(height: 10,),
+              const Card(
+                shadowColor: purple,
+                child: ListTile(
+                  title: Text("Invite a friend"),
+                  leading: Icon(Icons.mobile_friendly_rounded,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            const Card(
-              shadowColor: purple,
-              child: ListTile(
-                title: Text("App updates"),
-                leading: Icon(Icons.update,),
+              const SizedBox(height: 10,),
+              const Card(
+                shadowColor: purple,
+                child: ListTile(
+                  title: Text("App updates"),
+                  leading: Icon(Icons.update,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            Card(
-              shadowColor: purple,
-              child: ListTile(
-                onTap: () {
-                  Get.toNamed('profile');
-                },
-                title: const Text("Profile"),
-                leading: const Icon(Icons.person,),
+              const SizedBox(height: 10,),
+              Card(
+                shadowColor: purple,
+                child: ListTile(
+                  onTap: () {
+                    Get.toNamed('profile');
+                  },
+                  title: const Text("Profile"),
+                  leading: const Icon(Icons.person,),
+                ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            Obx(
-              () => Card(
+              const SizedBox(height: 10,),
+              Obx(
+                () => Card(
+                  shadowColor: purple,
+                  child: ListTile(
+                    onTap: () async {
+                      bool theme = controller.Theme.value;
+                      theme = !theme;
+                      controller.setData(theme);
+                    },
+                    title: const Text("Theme"),
+                    leading: Icon(controller.icon.value,),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10,),
+              Card(
                 shadowColor: purple,
                 child: ListTile(
                   onTap: () async {
-                    bool theme = controller.Theme.value;
-                    theme = !theme;
-                    controller.setData(theme);
+                    await AuthHelper.helper.signOut();
+                    Get.offAllNamed('signin');
                   },
-                  title: const Text("Theme"),
-                  leading: Icon(controller.icon.value,),
+                  title: const Text("LogOut"),
+                  leading: const Icon(Icons.logout),
                 ),
               ),
-            ),
-            const SizedBox(height: 10,),
-            Card(
-              shadowColor: purple,
-              child: ListTile(
-                onTap: () async {
-                  await AuthHelper.helper.signOut();
-                  Get.offAllNamed('signin');
-                },
-                title: const Text("LogOut"),
-                leading: const Icon(Icons.logout),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {

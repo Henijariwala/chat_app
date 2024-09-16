@@ -76,6 +76,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     }
                     return Expanded(
                       child: ListView.builder(
+                        reverse: true,
                         itemCount: chatList.length,
                         itemBuilder: (context, index) {
                           return Container(
@@ -90,6 +91,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                 if(chatList[index].senderId == AuthHelper.helper.user!.uid){
                                   Get.defaultDialog(
                                     title: "You want to delete msg",
+                                    content: const Text("Are you sure..!!"),
                                     actions: [
                                       TextButton(onPressed: () async {
                                        await FireDbHelper.helper.deleteChat(chatList[index].docId!);
@@ -113,7 +115,13 @@ class _ChatScreenState extends State<ChatScreen> {
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("${chatList[index].msg}",style: const TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold),),
+                                  child: Row(
+                                    children: [
+                                      Text("${chatList[index].msg}",style: const TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold),),
+                                      Spacer(),
+                                      Text("${chatList[index].dateTime!.toDate().hour}:${chatList[index].dateTime!.toDate().minute}")
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
