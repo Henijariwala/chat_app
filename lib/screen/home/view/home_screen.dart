@@ -135,14 +135,11 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               const SizedBox(height: 60,),
-               Card(
+               const Card(
                 shadowColor: purple,
                 child: ListTile(
-                  onTap: () {
-                    Get.toNamed('account');
-                  },
-                  title: const Text("Manage Account"),
-                  leading: const Icon(Icons.key,),
+                  title: Text("Manage Account"),
+                  leading: Icon(Icons.key,),
                 ),
               ),
               const SizedBox(height: 10,),
