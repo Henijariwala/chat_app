@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled5/screen/account/account_screen.dart';
 import 'package:untitled5/screen/chat/view/chat_screen.dart';
 import 'package:untitled5/screen/home/view/home_screen.dart';
 import 'package:untitled5/screen/login/view/signin_screen.dart';
